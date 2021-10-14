@@ -1,0 +1,1 @@
+export declare const CUSTOM_STRATEGIES = "CUSTOM_STRATEGIES";
