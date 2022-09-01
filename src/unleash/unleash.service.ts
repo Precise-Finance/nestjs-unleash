@@ -54,7 +54,7 @@ export class UnleashService<TCustomData = unknown> {
       try {
         const isEnabled = strategy.isEnabled(data.parameters, this.context)
         if (isEnabled) {
-          this.logger.debug(`Strategy "${data.name}" returned true`)
+          this.logger.verbose(`Strategy "${data.name}" returned true`)
         }
         return isEnabled
       } catch (_error) {

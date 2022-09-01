@@ -14,7 +14,7 @@ export class UnleashClient {
     const baseUrl = this.http.axiosRef.defaults.baseURL ?? '(unknown base url)'
     const url = config.url ?? '(unknown url)'
 
-    this.logger.debug(`Request: ${method} ${baseUrl}${url}`)
+    this.logger.verbose(`Request: ${method} ${baseUrl}${url}`)
     const response = await firstValueFrom(this.http.request<T>(config))
     return response.data
   }

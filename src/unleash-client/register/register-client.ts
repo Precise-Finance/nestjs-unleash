@@ -28,7 +28,7 @@ export class UnleashRegisterClient {
       strategies,
     }
 
-    this.logger.debug(`Registering ${JSON.stringify(payload)})`)
+    this.logger.verbose(`Registering ${JSON.stringify(payload)})`)
 
     await this.client.post<
       UnleashRegisterClientReponsePayload,

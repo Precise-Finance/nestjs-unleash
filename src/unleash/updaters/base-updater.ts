@@ -8,7 +8,7 @@ export abstract class BaseUpdater implements OnApplicationShutdown {
   protected abstract scheduler: SchedulerRegistry
 
   async start(): Promise<void> {
-    this.logger.debug(
+    this.logger.verbose(
       `Running ${this.constructor.name} every ${this.interval} ms ...`,
     )
     await this.update()
@@ -22,7 +22,7 @@ export abstract class BaseUpdater implements OnApplicationShutdown {
 
   stop(): void {
     if (this.timeout) {
-      this.logger.debug(`Stopping updater ${this.constructor.name} ...`)
+      this.logger.verbose(`Stopping updater ${this.constructor.name} ...`)
       clearInterval(this.timeout)
     }
   }
