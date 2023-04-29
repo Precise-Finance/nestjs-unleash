@@ -1,6 +1,6 @@
 import { HttpStatus, Inject, Injectable } from '@nestjs/common'
 import { SchedulerRegistry } from '@nestjs/schedule'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosRequestConfig } from 'axios'
 import { REFRESH_INTERVAL } from '..'
 import { UnleashFeaturesClient } from '../../unleash-client'
 import { ToggleEntity } from '../entity/toggle.entity'
@@ -34,11 +34,12 @@ export class TogglesUpdaterService extends BaseUpdater {
         this.isAxiosError(error) &&
         error.response?.status === HttpStatus.NOT_FOUND
       ) {
-        const { url, baseURL } = error.config
+        const config = error.config as AxiosRequestConfig
+        const { url, baseURL } = config
 
         this.logger.warn(
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          `Could not retrieve ${baseURL!}${url!}: ${error.message}`,
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          `Could not retrieve ${baseURL}${url}: ${error.message}`,
         )
       }
     }
